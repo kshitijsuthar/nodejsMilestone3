@@ -240,4 +240,21 @@ server.post('/patients', function(req, res, next)
       })
     })
 
+server.del('/sendDelete', function(req, res, next)
+{
+
+  savePatients = require('save')('')
+
+  savePatients.deleteMany({}, function (error, products){
+
+    if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+
+    res.send()
+    
+
+  })
+
+
+})
+
     
