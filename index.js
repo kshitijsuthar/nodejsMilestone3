@@ -240,12 +240,23 @@ server.post('/patients', function(req, res, next)
       })
     })
 
-server.del('/sendDelete', function(req, res, next)
+server.del('/patientDelete', function(req, res, next)
 {
 
   savePatients = require('save')('')
 
-  savePatients.deleteMany({}, function (error, products){
+  saveRecords = require('save')('')
+
+  savePatients.deleteMany({}, function (error, patients){
+
+    if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+
+    res.send()
+    
+
+  })
+
+  saveRecords.deleteMany({}, function (error, records){
 
     if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
 
@@ -256,5 +267,22 @@ server.del('/sendDelete', function(req, res, next)
 
 
 })
+
+// server.del('/recordDelete', function(req, res, next)
+// {
+
+//   saveRecords = require('save')('')
+
+//   saveRecords.deleteMany({}, function (error, records){
+
+//     if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+
+//     res.send()
+    
+
+//   })
+
+
+// })
 
     
