@@ -30,6 +30,7 @@ server
 .use(restify.bodyParser())
 
 //Get all patients
+
 server.get('/patients', function (req, res, next) {
   
   console.log("Get request counter:" + getCounter++);
@@ -42,8 +43,9 @@ savePatients.find({}, function (error, patients) {
 })
 
 
-//Get Patient record
-server.get('/patients/:id/records', function (req, res, next) {  
+//Get all Patient record.
+
+server.get('/patients/records', function (req, res, next) {  
 
   saveRecords.find({}, function (error, records) {
   
@@ -52,8 +54,20 @@ server.get('/patients/:id/records', function (req, res, next) {
   })
   })
 
+//Get patient record with their id.
+
+  server.get('/patients/:id/records', function (req, res, next) {  
+
+    saveRecords.find({_id: req.params.id}, function (error, records) {
+  
+    res.send(records)
+    
+  })
+  })
+
 
   //Used to get patients by their id
+
 server.get('/patients/:id', function(req, res, next){
     
       savePatients.findOne({_id: req.params.id}, function(error, patient){
@@ -75,6 +89,7 @@ server.get('/patients/:id', function(req, res, next){
 
 
     //Used to input patient
+
 server.post('/patients', function(req, res, next) 
     {
 
@@ -138,6 +153,7 @@ server.post('/patients', function(req, res, next)
     })
 
     //Input patient records
+
     server.post('/patients/:id/records', function(req, res, next) 
     {
 
@@ -182,6 +198,7 @@ server.post('/patients', function(req, res, next)
     })
 
     //Updates patient with their id
+
     server.put('/patients/:id', function (req, res, next) {
 
       if(req.params.firstname === undefined)
@@ -240,6 +257,8 @@ server.post('/patients', function(req, res, next)
       })
     })
 
+//Delete all patients and records
+
 server.del('/patientDelete', function(req, res, next)
 {
 
@@ -267,22 +286,5 @@ server.del('/patientDelete', function(req, res, next)
 
 
 })
-
-// server.del('/recordDelete', function(req, res, next)
-// {
-
-//   saveRecords = require('save')('')
-
-//   saveRecords.deleteMany({}, function (error, records){
-
-//     if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
-
-//     res.send()
-    
-
-//   })
-
-
-// })
 
     
