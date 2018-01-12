@@ -257,50 +257,21 @@ server.post('/patients', function(req, res, next)
       })
     })
 
-//Delete all patients and records
 
-server.del('/patientDelete', function(req, res, next)
-{
+//Delete patients by id
 
-  savePatients = require('save')('')
-
-  saveRecords = require('save')('')
-
-  savePatients.deleteMany({}, function (error, patients){
-
-    if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
-
-    res.send()
+server.del('/patients/:id', function(req, res, next)
+    {
     
-
-  })
-
-  saveRecords.deleteMany({}, function (error, records){
-
-    if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
-
-    res.send()
+      savePatients.delete(req.params.id, function(error, patient)
+    {
     
-
-  })
-
-
+      if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+    
+      res.send()
+    
+    })
+    
 })
-
-// //Delete patients by id
-
-// server.del('/patients/:id', function(req, res, next)
-//     {
-    
-//       savePatients.delete(req.params.id, function(error, patient)
-//     {
-    
-//       if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
-    
-//       res.send()
-    
-//     })
-    
-// })
 
     
