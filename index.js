@@ -257,6 +257,35 @@ server.post('/patients', function(req, res, next)
       })
     })
 
+    //Delete all patients and records
+
+server.del('/patientDelete', function(req, res, next)
+{
+
+  savePatients = require('save')('')
+
+  saveRecords = require('save')('')
+
+  savePatients.deleteMany({}, function (error, patients){
+
+    if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+
+    res.send()
+    
+
+  })
+
+  saveRecords.deleteMany({}, function (error, records){
+
+    if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+
+    res.send()
+    
+
+  })
+
+
+})
 
 //Delete patients by id
 
