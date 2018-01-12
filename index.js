@@ -287,4 +287,20 @@ server.del('/patientDelete', function(req, res, next)
 
 })
 
+//Delete patients by id
+
+server.del('/patients/:id', function(req, res, next)
+    {
+    
+      savePatients.delete(req.params.id, function(error, patient)
+    {
+    
+      if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+    
+      res.send()
+    
+    })
+    
+})
+
     
