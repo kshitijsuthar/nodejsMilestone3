@@ -287,20 +287,20 @@ server.del('/patientDelete', function(req, res, next)
 
 })
 
-//Delete patients by id
+// //Delete patients by id
 
-server.del('/patients/:id', function(req, res, next)
-    {
+// server.del('/patients/:id', function(req, res, next)
+//     {
     
-      savePatients.delete(req.params.id, function(error, patient)
-    {
+//       savePatients.delete(req.params.id, function(error, patient)
+//     {
     
-      if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+//       if(error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
     
-      res.send()
+//       res.send()
     
-    })
+//     })
     
-})
+// })
 
     
